@@ -1,0 +1,1179 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package MainApp;
+
+import Account.SQLConnection;
+import java.awt.event.KeyEvent;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.UIManager.getString;
+
+/**
+ *
+ * @author kyanh
+ */
+public class TkbJPanel extends javax.swing.JPanel {
+
+    /**
+     * Creates new form TkbJPanel
+     */
+    private String User;
+    public TkbJPanel(String user) {
+        initComponents();
+        this.User = user;
+        setList();
+        LayTKB();
+        setEvent();
+    }
+    
+    ArrayList <JLabel> ListMon = new ArrayList <JLabel>();
+    ArrayList <JLabel> ListTue = new ArrayList <JLabel>();
+    ArrayList <JLabel> ListWed = new ArrayList <JLabel>();
+    ArrayList <JLabel> ListThu = new ArrayList <JLabel>();
+    ArrayList <JLabel> ListFri = new ArrayList <JLabel>();
+    ArrayList <JLabel> ListSat = new ArrayList <JLabel>();
+
+    private void setList(){
+        
+        ListMon.add(Mon1);
+        ListMon.add(Mon2);
+        ListMon.add(Mon3);
+        ListMon.add(Mon4);
+        ListMon.add(Mon5);
+        ListMon.add(Mon6);
+        ListMon.add(Mon7);
+        ListMon.add(Mon8);
+        ListMon.add(Mon9);
+        ListMon.add(Mon10);
+        
+        ListTue.add(Tue1);
+        ListTue.add(Tue2);
+        ListTue.add(Tue3);
+        ListTue.add(Tue4);
+        ListTue.add(Tue5);
+        ListTue.add(Tue6);
+        ListTue.add(Tue7);
+        ListTue.add(Tue8);
+        ListTue.add(Tue9);
+        ListTue.add(Tue10);
+        
+        
+        ListWed.add(Wed1);
+        ListWed.add(Wed2);
+        ListWed.add(Wed3);
+        ListWed.add(Wed4);
+        ListWed.add(Wed5);
+        ListWed.add(Wed6);
+        ListWed.add(Wed7);
+        ListWed.add(Wed8);
+        ListWed.add(Wed9);
+        ListWed.add(Wed10);
+        
+        
+        ListThu.add(Thu1);
+        ListThu.add(Thu2);
+        ListThu.add(Thu3);
+        ListThu.add(Thu4);
+        ListThu.add(Thu5);
+        ListThu.add(Thu6);
+        ListThu.add(Thu7);
+        ListThu.add(Thu8);
+        ListThu.add(Thu9);
+        ListThu.add(Thu10);
+        
+        ListFri.add(Fri1);
+        ListFri.add(Fri2);
+        ListFri.add(Fri3);
+        ListFri.add(Fri4);
+        ListFri.add(Fri5);
+        ListFri.add(Fri6);
+        ListFri.add(Fri7);
+        ListFri.add(Fri8);
+        ListFri.add(Fri9);
+        ListFri.add(Fri10);
+        
+        ListSat.add(Sat1);
+        ListSat.add(Sat2);
+        ListSat.add(Sat3);
+        ListSat.add(Sat4);
+        ListSat.add(Sat5);
+        ListSat.add(Sat6);
+        ListSat.add(Sat7);
+        ListSat.add(Sat8);
+        ListSat.add(Sat9);
+        ListSat.add(Sat10);
+    }
+    
+    private void setEvent(){
+        Event(ListMon, "Thứ hai");
+        Event(ListTue, "Thứ ba");
+        Event(ListWed, "Thứ tư");
+        Event(ListThu, "Thứ năm");
+        Event(ListFri, "Thứ sáu");
+        Event(ListSat, "Thứ bảy");
+
+    } 
+    
+    private void Event(ArrayList <JLabel> List, String Thu){
+        for(int i = 0;i<10;i++){
+            JLabel jlb = List.get(i);
+            List.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    HienThiMonHoc(jlb, Thu);
+                };
+            private void HienThiMonHoc(JLabel jlb,String Thu) {
+                if (!"".equals(jlb.getText())){
+                    jLabel3.setText(jlb.getText());
+                    jLabel4.setText(Thu);
+                    try{
+                        Connection con = SQLConnection.getSQLConnection();
+                        ResultSet rs;
+                        String SQL = "SELECT TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND TENMH = ? AND NGHOC = ?";
+                        PreparedStatement ps = con.prepareStatement(SQL);
+                        ps.setString(1,User);
+                        ps.setString(2,jlb.getText());
+                        ps.setString(3,Thu);
+                        System.out.print(User + jlb.getText() + Thu);
+                        rs = ps.executeQuery();
+                        while(rs.next()){
+                            jLabel7.setText(rs.getString(1));
+                            jLabel8.setText(rs.getString(2));
+                        }
+                    }
+                    catch (Exception e) {
+                        
+                    }
+                }
+            }
+            });
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        Mon1 = new javax.swing.JLabel();
+        Tue1 = new javax.swing.JLabel();
+        Wed1 = new javax.swing.JLabel();
+        Thu1 = new javax.swing.JLabel();
+        Fri1 = new javax.swing.JLabel();
+        Sat1 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        Mon2 = new javax.swing.JLabel();
+        Tue2 = new javax.swing.JLabel();
+        Wed2 = new javax.swing.JLabel();
+        Thu2 = new javax.swing.JLabel();
+        Fri2 = new javax.swing.JLabel();
+        Sat2 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        Mon3 = new javax.swing.JLabel();
+        Tue3 = new javax.swing.JLabel();
+        Wed3 = new javax.swing.JLabel();
+        Thu3 = new javax.swing.JLabel();
+        Fri3 = new javax.swing.JLabel();
+        Sat3 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        Mon4 = new javax.swing.JLabel();
+        Tue4 = new javax.swing.JLabel();
+        Wed4 = new javax.swing.JLabel();
+        Thu4 = new javax.swing.JLabel();
+        Fri4 = new javax.swing.JLabel();
+        Sat4 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        Mon5 = new javax.swing.JLabel();
+        Tue5 = new javax.swing.JLabel();
+        Wed5 = new javax.swing.JLabel();
+        Thu5 = new javax.swing.JLabel();
+        Fri5 = new javax.swing.JLabel();
+        Sat5 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        Mon6 = new javax.swing.JLabel();
+        Tue6 = new javax.swing.JLabel();
+        Wed6 = new javax.swing.JLabel();
+        Thu6 = new javax.swing.JLabel();
+        Fri6 = new javax.swing.JLabel();
+        Sat6 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        Mon7 = new javax.swing.JLabel();
+        Tue7 = new javax.swing.JLabel();
+        Wed7 = new javax.swing.JLabel();
+        Thu7 = new javax.swing.JLabel();
+        Fri7 = new javax.swing.JLabel();
+        Sat7 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        Mon8 = new javax.swing.JLabel();
+        Tue8 = new javax.swing.JLabel();
+        Wed8 = new javax.swing.JLabel();
+        Thu8 = new javax.swing.JLabel();
+        Fri8 = new javax.swing.JLabel();
+        Sat8 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        Mon9 = new javax.swing.JLabel();
+        Tue9 = new javax.swing.JLabel();
+        Wed9 = new javax.swing.JLabel();
+        Thu9 = new javax.swing.JLabel();
+        Fri9 = new javax.swing.JLabel();
+        Sat9 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        Mon10 = new javax.swing.JLabel();
+        Tue10 = new javax.swing.JLabel();
+        Wed10 = new javax.swing.JLabel();
+        Thu10 = new javax.swing.JLabel();
+        Fri10 = new javax.swing.JLabel();
+        Sat10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btnXoa = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnReload = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(254, 244, 230));
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(254, 244, 230));
+        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.setLayout(new java.awt.GridLayout(11, 6));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Tiết");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel10);
+        jLabel10.getAccessibleContext().setAccessibleName("");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Thứ hai");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel13.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel13);
+        jLabel13.getAccessibleContext().setAccessibleName("");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Thứ ba");
+        jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel19.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel19);
+        jLabel19.getAccessibleContext().setAccessibleName("");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Thứ tư");
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel14.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel14);
+        jLabel14.getAccessibleContext().setAccessibleName("");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Thứ năm");
+        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel22.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel22);
+        jLabel22.getAccessibleContext().setAccessibleName("");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Thứ sáu");
+        jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel15.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel15);
+        jLabel15.getAccessibleContext().setAccessibleName("");
+
+        jLabel17.setBackground(new java.awt.Color(58, 81, 153));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Thứ bảy");
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel17.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel17);
+        jLabel17.getAccessibleContext().setAccessibleName("");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("1");
+        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel21.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel21);
+        jLabel21.getAccessibleContext().setAccessibleName("");
+
+        Mon1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon1);
+
+        Tue1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue1);
+
+        Wed1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed1);
+
+        Thu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu1);
+
+        Fri1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri1);
+
+        Sat1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat1.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat1);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("2");
+        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel25.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel25);
+        jLabel25.getAccessibleContext().setAccessibleName("");
+
+        Mon2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon2);
+
+        Tue2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue2);
+
+        Wed2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed2);
+
+        Thu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu2);
+
+        Fri2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri2);
+
+        Sat2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat2.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat2);
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("3");
+        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel33.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel33);
+        jLabel33.getAccessibleContext().setAccessibleName("");
+
+        Mon3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon3);
+
+        Tue3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue3);
+
+        Wed3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed3);
+
+        Thu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu3);
+
+        Fri3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri3);
+
+        Sat3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat3.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat3);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("4");
+        jLabel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel40.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel40);
+        jLabel40.getAccessibleContext().setAccessibleName("");
+
+        Mon4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon4);
+
+        Tue4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue4);
+
+        Wed4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed4);
+
+        Thu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu4);
+
+        Fri4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri4);
+
+        Sat4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat4.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat4);
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setText("5");
+        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel47.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel47);
+        jLabel47.getAccessibleContext().setAccessibleName("");
+
+        Mon5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon5);
+
+        Tue5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue5);
+
+        Wed5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed5);
+
+        Thu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu5);
+
+        Fri5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri5);
+
+        Sat5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat5.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat5);
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel54.setText("6");
+        jLabel54.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel54.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel54);
+        jLabel54.getAccessibleContext().setAccessibleName("");
+
+        Mon6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon6);
+
+        Tue6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue6);
+
+        Wed6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed6);
+
+        Thu6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu6);
+
+        Fri6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri6);
+
+        Sat6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat6.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat6);
+
+        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("7");
+        jLabel61.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel61.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel61);
+        jLabel61.getAccessibleContext().setAccessibleName("");
+
+        Mon7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon7);
+
+        Tue7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue7);
+
+        Wed7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed7);
+
+        Thu7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu7);
+
+        Fri7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Fri7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Fri7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri7);
+
+        Sat7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat7.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat7);
+
+        jLabel68.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel68.setText("8");
+        jLabel68.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel68.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel68);
+        jLabel68.getAccessibleContext().setAccessibleName("");
+
+        Mon8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon8);
+
+        Tue8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue8);
+
+        Wed8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed8);
+
+        Thu8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu8);
+
+        Fri8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri8);
+
+        Sat8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat8.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat8);
+
+        jLabel75.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel75.setText("9");
+        jLabel75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel75.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel75);
+        jLabel75.getAccessibleContext().setAccessibleName("");
+
+        Mon9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon9);
+
+        Tue9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue9);
+
+        Wed9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Wed9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed9);
+
+        Thu9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu9);
+
+        Fri9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri9);
+
+        Sat9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat9.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat9);
+
+        jLabel81.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel81.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel81.setText("10");
+        jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel81.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(jLabel81);
+
+        Mon10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Mon10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mon10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Mon10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Mon10);
+
+        Tue10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Tue10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tue10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tue10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Tue10);
+
+        Wed10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Wed10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Wed10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Wed10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Wed10);
+
+        Thu10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Thu10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thu10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Thu10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Thu10);
+
+        Fri10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fri10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fri10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fri10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Fri10);
+
+        Sat10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sat10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sat10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Sat10.setPreferredSize(new java.awt.Dimension(35, 15));
+        jPanel1.add(Sat10);
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 150, 550, 330));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Tiết đầu: ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 75, 100, 25));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Tên môn học:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 25, 150, 25));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 25, 400, 25));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 75, 75, 25));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("Ngày học:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 75, 150, 25));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Tiết cuối:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 75, 100, 25));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 75, 25, 25));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 75, 25, 25));
+        jLabel8.getAccessibleContext().setAccessibleName("5");
+
+        btnXoa.setBackground(new java.awt.Color(58, 81, 153));
+        btnXoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
+        btnXoa.setText("Xóa");
+        btnXoa.setBorder(null);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 125, 25));
+
+        btnThem.setBackground(new java.awt.Color(58, 81, 153));
+        btnThem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
+        btnThem.setText("Thêm");
+        btnThem.setBorder(null);
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 125, 25));
+
+        btnReload.setBackground(new java.awt.Color(58, 81, 153));
+        btnReload.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReload.setForeground(new java.awt.Color(255, 255, 255));
+        btnReload.setText("Reload");
+        btnReload.setBorder(null);
+        btnReload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReloadActionPerformed(evt);
+            }
+        });
+        add(btnReload, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 125, 25));
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        new ThemTKB(this.User).setVisible(true);
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        try{
+            Connection conn = SQLConnection.getSQLConnection();
+            String Sql = "delete from TKB\n" +
+                         "where MAND = ? AND TENMH = ? AND NGHOC = ?";
+            PreparedStatement ps = conn.prepareStatement(Sql);
+                ps.setString(1, User);
+                ps.setString(2, jLabel3.getText());
+                ps.setString(3, jLabel4.getText());
+                if(ps.executeUpdate()!=0)
+                {
+                    JOptionPane.showMessageDialog(this,"Xóa thời khóa biểu thành công");
+                }
+                
+                int tDau = Integer.parseInt(jLabel7.getText());
+            int tCuoi = Integer.parseInt(jLabel8.getText());
+
+                switch(jLabel4.getText()) {
+                case ("Thứ hai"):
+                    Xoa(tDau,tCuoi,ListMon);
+                    break;
+                case ("Thứ ba"):
+                    Xoa(tDau,tCuoi,ListTue);
+                    break;
+                case ("Thứ tư"):
+                    Xoa(tDau,tCuoi,ListWed);
+                    break;
+                case ("Thứ năm"):
+                    Xoa(tDau,tCuoi,ListThu);
+                    break;
+                case ("Thứ sáu"):
+                    Xoa(tDau,tCuoi,ListFri);
+                    break;
+                case ("Thứ bảy"):
+                    Xoa(tDau,tCuoi,ListSat);
+                    break;
+                }
+            }
+            catch(Exception e){
+                System.out.print(e);
+            }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void Xoa(int TDau, int TCuoi, ArrayList <JLabel> List){
+            for(int i = TDau-1;i<TCuoi;i++)
+            {
+                List.get(i).setText("");
+            }
+    }
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+        setList();
+        LayTKB();
+    }//GEN-LAST:event_btnReloadActionPerformed
+
+    private void LayTKB()
+    {
+        String NgayHoc;
+        int TDau, TCuoi;
+//        ArrayList <JLabel> ListMon = new ArrayList <JLabel>();
+//        ListMon.add(Mon1);
+//        ListMon.add(Mon2);
+//        ListMon.add(Mon3);
+//        ListMon.add(Mon4);
+//        ListMon.add(Mon5);
+//        ListMon.add(Mon6);
+//        ListMon.add(Mon7);
+//        ListMon.add(Mon8);
+//        ListMon.add(Mon9);
+//        ListMon.add(Mon10);
+//        
+//        ArrayList <JLabel> ListTue = new ArrayList <JLabel>();
+//        ListTue.add(Tue1);
+//        ListTue.add(Tue2);
+//        ListTue.add(Tue3);
+//        ListTue.add(Tue4);
+//        ListTue.add(Tue5);
+//        ListTue.add(Tue6);
+//        ListTue.add(Tue7);
+//        ListTue.add(Tue8);
+//        ListTue.add(Tue9);
+//        ListTue.add(Tue10);
+//        
+//        ArrayList <JLabel> ListWed = new ArrayList <JLabel>();
+//        ListWed.add(Wed1);
+//        ListWed.add(Wed2);
+//        ListWed.add(Wed3);
+//        ListWed.add(Wed4);
+//        ListWed.add(Wed5);
+//        ListWed.add(Wed6);
+//        ListWed.add(Wed7);
+//        ListWed.add(Wed8);
+//        ListWed.add(Wed9);
+//        ListWed.add(Wed10);
+//        
+//        ArrayList <JLabel> ListThu = new ArrayList <JLabel>();
+//        ListThu.add(Thu1);
+//        ListThu.add(Thu2);
+//        ListThu.add(Thu3);
+//        ListThu.add(Thu4);
+//        ListThu.add(Thu5);
+//        ListThu.add(Thu6);
+//        ListThu.add(Thu7);
+//        ListThu.add(Thu8);
+//        ListThu.add(Thu9);
+//        ListThu.add(Thu10);
+//        
+//        ArrayList <JLabel> ListFri = new ArrayList <JLabel>();
+//        ListFri.add(Fri1);
+//        ListFri.add(Fri2);
+//        ListFri.add(Fri3);
+//        ListFri.add(Fri4);
+//        ListFri.add(Fri5);
+//        ListFri.add(Fri6);
+//        ListFri.add(Fri7);
+//        ListFri.add(Fri8);
+//        ListFri.add(Fri9);
+//        ListFri.add(Fri10);
+//        
+//        ArrayList <JLabel> ListSat = new ArrayList <JLabel>();
+//        ListSat.add(Sat1);
+//        ListSat.add(Sat2);
+//        ListSat.add(Sat3);
+//        ListSat.add(Sat4);
+//        ListSat.add(Sat5);
+//        ListSat.add(Sat6);
+//        ListSat.add(Sat7);
+//        ListSat.add(Sat8);
+//        ListSat.add(Sat9);
+//        ListSat.add(Sat10);
+        
+        try{
+            Connection con = SQLConnection.getSQLConnection();
+            ResultSet rs;
+            String SQL = "SELECT TENMH, NGHOC, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, User);
+            rs = ps.executeQuery();
+//            SimpleDateFormat sdf_ddMMyyyy = new SimpleDateFormat("dd/MM/yyyy");  
+//            String ngay = sdf_ddMMyyyy.format(rs.getDate("NGHOC"));
+            while(rs.next())
+            { 
+                NgayHoc = rs.getString("NGHOC");
+                System.out.println(NgayHoc);
+                switch(NgayHoc)
+                {
+                    case "Thứ hai":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListMon.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                    
+                    case "Thứ ba":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListTue.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                    
+                    case "Thứ tư":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListWed.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                    
+                    case "Thứ năm":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListThu.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                    
+                    case "Thứ sáu":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListFri.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                    
+                    case "Thứ bảy":
+                    {
+                        Connection conn = SQLConnection.getSQLConnection();
+                        ResultSet rs1;
+                        String sql = "SELECT TENMH, TIETDAU, TIETCUOI FROM TKB WHERE MAND = ? AND NGHOC = ?";
+                        PreparedStatement ps1 = conn.prepareStatement(sql);
+                        ps1.setString(1, User);
+                        ps1.setString(2, NgayHoc);
+                        TDau = rs.getInt("TIETDAU");
+                        TCuoi = rs.getInt("TIETCUOI");
+                        for(int i = TDau - 1; i < TCuoi; i++)
+                        {
+                            ListSat.get(i).setText(rs.getString("TENMH"));
+                        }
+                        break;
+                    }
+                }   
+            }
+        }catch (Exception e){
+            System.out.print(e);
+        }
+        
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fri1;
+    private javax.swing.JLabel Fri10;
+    private javax.swing.JLabel Fri2;
+    private javax.swing.JLabel Fri3;
+    private javax.swing.JLabel Fri4;
+    private javax.swing.JLabel Fri5;
+    private javax.swing.JLabel Fri6;
+    private javax.swing.JLabel Fri7;
+    private javax.swing.JLabel Fri8;
+    private javax.swing.JLabel Fri9;
+    private javax.swing.JLabel Mon1;
+    private javax.swing.JLabel Mon10;
+    private javax.swing.JLabel Mon2;
+    private javax.swing.JLabel Mon3;
+    private javax.swing.JLabel Mon4;
+    private javax.swing.JLabel Mon5;
+    private javax.swing.JLabel Mon6;
+    private javax.swing.JLabel Mon7;
+    private javax.swing.JLabel Mon8;
+    private javax.swing.JLabel Mon9;
+    private javax.swing.JLabel Sat1;
+    private javax.swing.JLabel Sat10;
+    private javax.swing.JLabel Sat2;
+    private javax.swing.JLabel Sat3;
+    private javax.swing.JLabel Sat4;
+    private javax.swing.JLabel Sat5;
+    private javax.swing.JLabel Sat6;
+    private javax.swing.JLabel Sat7;
+    private javax.swing.JLabel Sat8;
+    private javax.swing.JLabel Sat9;
+    private javax.swing.JLabel Thu1;
+    private javax.swing.JLabel Thu10;
+    private javax.swing.JLabel Thu2;
+    private javax.swing.JLabel Thu3;
+    private javax.swing.JLabel Thu4;
+    private javax.swing.JLabel Thu5;
+    private javax.swing.JLabel Thu6;
+    private javax.swing.JLabel Thu7;
+    private javax.swing.JLabel Thu8;
+    private javax.swing.JLabel Thu9;
+    private javax.swing.JLabel Tue1;
+    private javax.swing.JLabel Tue10;
+    private javax.swing.JLabel Tue2;
+    private javax.swing.JLabel Tue3;
+    private javax.swing.JLabel Tue4;
+    private javax.swing.JLabel Tue5;
+    private javax.swing.JLabel Tue6;
+    private javax.swing.JLabel Tue7;
+    private javax.swing.JLabel Tue8;
+    private javax.swing.JLabel Tue9;
+    private javax.swing.JLabel Wed1;
+    private javax.swing.JLabel Wed10;
+    private javax.swing.JLabel Wed2;
+    private javax.swing.JLabel Wed3;
+    private javax.swing.JLabel Wed4;
+    private javax.swing.JLabel Wed5;
+    private javax.swing.JLabel Wed6;
+    private javax.swing.JLabel Wed7;
+    private javax.swing.JLabel Wed8;
+    private javax.swing.JLabel Wed9;
+    private javax.swing.JButton btnReload;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
+}
